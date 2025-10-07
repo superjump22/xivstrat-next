@@ -1,14 +1,13 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
-
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.21 0.006 285.885);
+  --border: oklch(0.92 0.004 286.32);
+  --scrollbar: oklch(0.705 0.015 286.067);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
@@ -23,7 +22,6 @@
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -32,8 +30,6 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.21 0.006 285.885);
@@ -45,10 +41,12 @@
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
+  --background: oklch(0.21 0.006 285.885);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --scrollbar: oklch(0.552 0.016 285.938);
+  --card: oklch(0.274 0.006 286.033 / 80%);
+  --card-foreground: oklch(1 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.92 0.004 286.32);
@@ -61,7 +59,6 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.552 0.016 285.938);
   --chart-1: oklch(0.488 0.243 264.376);
@@ -80,8 +77,11 @@
 }
 
 @theme inline {
+  /* color */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-scrollbar: var(--scrollbar);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -96,7 +96,6 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
@@ -116,13 +115,85 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+
+  /* size */
+  --container-strat-max: --spacing(416);
+  --container-strat-min: --spacing(340);
+  --article-row-gap: --spacing(6);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
+  html {
+    @apply scroll-smooth;
   }
+  body {
+    @apply bg-background text-foreground overscroll-none;
+  }
+
+  /* Custom scrollbar styling. See https://github.com/shadcn-ui/ui/blob/main/apps/www/styles/globals.css */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 5px;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar) transparent;
+  }
+}
+
+@utility shadowbringer {
+  @apply [filter:drop-shadow(0_0_4px_rgba(0,0,0,0.5))];
+}
+
+@utility gap-strat {
+  gap: calc(1em * 4 / 18);
+}
+
+@utility paragraph {
+  @apply gap-strat flex flex-wrap items-center;
+}
+
+@utility text-decimal {
+  font-size: calc(1em * 16 / 18);
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(rgba(63, 63, 70, 0.8) 10%, transparent 10%);
+  background-size: 8px 8px;
+}
+
+@utility mask-dots {
+  -webkit-mask-image: radial-gradient(rgba(63, 63, 70, 0.8) 10%, transparent 10%);
+  mask-image: radial-gradient(rgba(63, 63, 70, 0.8) 10%, transparent 10%);
+  -webkit-mask-size: 8px 8px;
+  mask-size: 8px 8px;
+}
+
+@utility fade-t {
+  -webkit-mask-image: linear-gradient(0deg, white 0%, transparent 100%);
+  mask-image: linear-gradient(0deg, white 0%, transparent 100%);
+}
+
+@utility fade-b {
+  -webkit-mask-image: linear-gradient(0deg, transparent 0%, white 100%);
+  mask-image: linear-gradient(0deg, transparent 0%, white 100%);
+}
+
+@utility fade-y {
+  -webkit-mask-image: linear-gradient(0deg, transparent 0%, white 20%, white 80%, transparent 100%);
+  mask-image: linear-gradient(0deg, transparent 0%, white 20%, white 80%, transparent 100%);
+}
+
+@utility fade-x {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, white, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, white, transparent 100%);
 }
