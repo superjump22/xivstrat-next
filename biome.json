@@ -13,7 +13,8 @@
       "!.next",
       "!dist",
       "!build",
-      "!(payload)"
+      "!(payload)",
+      "!(payload-types.ts)"
     ]
   },
   "formatter": {
