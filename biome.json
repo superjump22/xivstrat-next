@@ -14,7 +14,7 @@
       "!dist",
       "!build",
       "!(payload)",
-      "!(payload-types.ts)"
+      "!payload-types.ts"
     ]
   },
   "formatter": {
