@@ -1,10 +1,9 @@
-// storage-adapter-import-placeholder
-
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
 import { zh } from "payload/i18n/zh";
 import sharp from "sharp";
@@ -45,7 +44,20 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.COS_BUCKET || "",
+      config: {
+        credentials: {
+          accessKeyId: process.env.COS_SECRET_ID || "",
+          secretAccessKey: process.env.COS_SECRET_KEY || "",
+        },
+        region: process.env.COS_REGION || "",
+        endpoint: process.env.COS_ENDPOINT || "",
+      },
+    }),
   ],
   telemetry: false,
   i18n: {
