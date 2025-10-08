@@ -3,7 +3,7 @@ import type { CollectionConfig } from "payload";
 export const Users: CollectionConfig = {
   slug: "users",
   admin: {
-    useAsTitle: "email",
+    useAsTitle: "username",
   },
   auth: {
     tokenExpiration: 86400 * 7, // How many seconds to keep the user logged in
