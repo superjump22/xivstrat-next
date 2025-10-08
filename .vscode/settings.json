@@ -1,3 +1,20 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  // Biome 格式化（全局生效）
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+
+  // 保存时自动排序 imports
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit"
+  },
+
+  // 使用项目本地的 TypeScript 版本
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // 禁用 ESLint（已使用 Biome）
+  "eslint.enable": false,
+
+  // 禁用 Prettier（已使用 Biome）
+  "prettier.enable": false
 }
