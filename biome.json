@@ -13,7 +13,7 @@
       "!.next",
       "!dist",
       "!build",
-      "!(payload)",
+      "!app/(payload)",
       "!payload-types.ts",
       "!migrations"
     ]
