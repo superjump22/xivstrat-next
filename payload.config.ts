@@ -43,6 +43,7 @@ export default buildConfig({
   sharp,
   plugins: [
     s3Storage({
+      // 腾讯云COS兼容S3 API：https://cloud.tencent.com/document/product/436/37421
       collections: {
         media: true,
       },
