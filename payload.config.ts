@@ -51,4 +51,12 @@ export default buildConfig({
   i18n: {
     supportedLanguages: { zh },
   },
+  localization: {
+    locales: [
+      { code: "zh", label: "中文", fallbackLocale: "jp" },
+      { code: "jp", label: "日文", fallbackLocale: "en" },
+      { code: "en", label: "英文" },
+    ],
+    defaultLocale: "zh",
+  },
 });

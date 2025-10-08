@@ -4,6 +4,9 @@ export const Users: CollectionConfig = {
   slug: "users",
   admin: {
     useAsTitle: "username",
+    // hidden
+    groupBy: true,
+    listSearchableFields: ["username", "email"],
   },
   auth: {
     tokenExpiration: 86400 * 7, // How many seconds to keep the user logged in
