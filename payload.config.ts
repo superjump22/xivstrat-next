@@ -20,6 +20,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    autoRefresh: true,
+    dateFormat: "yyyy-MM-dd HH:mm:ss",
+    suppressHydrationWarning: true,
   },
   collections: [Users, Media],
   editor: lexicalEditor(),
