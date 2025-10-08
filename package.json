@@ -13,11 +13,11 @@
     "migrate:create": "payload migrate:create"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "3.59.0",
-    "@payloadcms/next": "3.59.0",
-    "@payloadcms/payload-cloud": "3.59.0",
-    "@payloadcms/richtext-lexical": "3.59.0",
-    "@payloadcms/translations": "3.59.0",
+    "@payloadcms/db-postgres": "3.59.1",
+    "@payloadcms/next": "3.59.1",
+    "@payloadcms/payload-cloud": "3.59.1",
+    "@payloadcms/richtext-lexical": "3.59.1",
+    "@payloadcms/translations": "3.59.1",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "graphql": "16.11.0",
@@ -25,7 +25,7 @@
     "next": "15.5.4",
     "next-easy-darkmode": "0.0.7",
     "next-themes": "0.4.6",
-    "payload": "3.59.0",
+    "payload": "3.59.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "tailwind-merge": "3.3.1"
