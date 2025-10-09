@@ -69,4 +69,11 @@ export default buildConfig({
     ],
     defaultLocale: "zh",
   },
+  upload: {
+    abortOnLimit: true,
+    uploadTimeout: 120 * 1000,
+    limits: {
+      fileSize: 32 * 1024 * 1024,
+    },
+  },
 });
