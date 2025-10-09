@@ -6,7 +6,7 @@ import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
 import { zh } from "payload/i18n/zh";
 import sharp from "sharp";
-import { Media } from "./collections/Media";
+import { Assets } from "./collections/Assets";
 import { Users } from "./collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
@@ -22,7 +22,7 @@ export default buildConfig({
     dateFormat: "yyyy-MM-dd HH:mm:ss",
     suppressHydrationWarning: true,
   },
-  collections: [Users, Media],
+  collections: [Users, Assets],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -44,7 +44,7 @@ export default buildConfig({
     s3Storage({
       // 腾讯云COS兼容S3 API：https://cloud.tencent.com/document/product/436/37421
       collections: {
-        media: true,
+        assets: true,
       },
       bucket: process.env.COS_BUCKET || "",
       config: {

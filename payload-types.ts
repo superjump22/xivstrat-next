@@ -68,7 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
-    media: Media;
+    assets: Asset;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -76,7 +76,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
+    assets: AssetsSelect<false> | AssetsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -152,9 +152,9 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "assets".
  */
-export interface Media {
+export interface Asset {
   id: number;
   originalFilename: string;
   updatedAt: string;
@@ -199,8 +199,8 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
-        relationTo: 'media';
-        value: number | Media;
+        relationTo: 'assets';
+        value: number | Asset;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -269,9 +269,9 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "assets_select".
  */
-export interface MediaSelect<T extends boolean = true> {
+export interface AssetsSelect<T extends boolean = true> {
   originalFilename?: T;
   updatedAt?: T;
   createdAt?: T;
