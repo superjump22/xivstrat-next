@@ -28,13 +28,12 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
-  cors: [process.env.SERVER1_URL || "", process.env.SERVER2_URL || ""].filter(
-    Boolean,
-  ),
-  csrf: [process.env.SERVER1_URL || "", process.env.SERVER2_URL || ""].filter(
-    Boolean,
-  ),
+  serverURL:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : process.env.SERVER_URL,
+  cors: [process.env.SERVER_URL || ""].filter(Boolean),
+  csrf: [process.env.SERVER_URL || ""].filter(Boolean),
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DB_URI || "",
