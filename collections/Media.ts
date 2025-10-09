@@ -12,5 +12,17 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    adminThumbnail: "thumb",
+    imageSizes: [
+      {
+        name: "thumb",
+        width: 120,
+        height: 120,
+        generateImageName: ({ originalName, sizeName, extension }) =>
+          `${originalName}-${sizeName}.${extension}`,
+        withoutEnlargement: true,
+      },
+    ],
+  },
 };
