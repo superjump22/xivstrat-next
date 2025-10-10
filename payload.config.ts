@@ -59,9 +59,11 @@ export default buildConfig({
   ],
   telemetry: false,
   i18n: {
+    // Admin Panel的语言支持
     supportedLanguages: { zh },
   },
   localization: {
+    // CMS内容的语言支持
     locales: [
       { code: "zh", label: "中文", fallbackLocale: "jp" },
       { code: "jp", label: "日文", fallbackLocale: "en" },
@@ -73,6 +75,7 @@ export default buildConfig({
     abortOnLimit: true,
     uploadTimeout: 120 * 1000,
     limits: {
+      // 最大32MB
       fileSize: 32 * 1024 * 1024,
     },
   },
