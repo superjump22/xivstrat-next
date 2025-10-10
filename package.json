@@ -4,13 +4,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "biome check",
-    "format": "biome format --write",
-    "migrate": "payload migrate",
-    "migrate:create": "payload migrate:create"
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbopack",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build --turbopack",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation biome check",
+    "format": "cross-env NODE_OPTIONS=--no-deprecation biome format --write",
+    "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
+    "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
+    "migrate:fresh": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:fresh",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.59.1",
