@@ -12,11 +12,12 @@ export const Assets: CollectionConfig = {
       type: "text",
       hidden: true,
       required: true,
-      defaultValue: ({ req }) => req.context.originalFilename ?? "",
     },
   ],
   upload: {
     adminThumbnail: "thumb",
+    crop: false, // 关闭裁剪工具，有bug，对已有图片重新上传又同时裁剪时，会导致数据错误。建议在上传之前就用PS处理好
+    focalPoint: false, // 同上
     imageSizes: [
       {
         // 经sharp压缩优化的图，通常情况下在Nextjs里用这个图
@@ -45,20 +46,30 @@ export const Assets: CollectionConfig = {
   },
   hooks: {
     beforeOperation: [
-      // 上传文件前，随机取一个nanoid作为文件名
       ({ req, operation }) => {
+        // 上传文件时，将文件名改为随机的nanoid
         if ((operation === "create" || operation === "update") && req.file) {
-          const originalName = req.file.name ?? "";
-          // 存到context里以便originalFilename字段使用
-          req.context.originalFilename = originalName;
-          const dotIndex = originalName.lastIndexOf(".");
-          const ext =
-            dotIndex > -1 ? originalName.slice(dotIndex + 1).toLowerCase() : "";
+          // 生成随机的nanoid
           const alphabet =
             "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-          const nanoid = customAlphabet(alphabet, 20);
-          const id = nanoid();
-          req.file.name = ext ? `${id}.${ext}` : id;
+          const nanoid = customAlphabet(alphabet, 20)();
+          // 保留原文件名
+          const originalFilename = req.file.name ?? "";
+          if (req.data) {
+            req.data.originalFilename = originalFilename;
+          } else {
+            req.data = {
+              originalFilename,
+            };
+          }
+          // 尝试保留原拓展名并统一转为小写
+          const dotIndex = originalFilename.lastIndexOf(".");
+          const ext =
+            dotIndex > -1
+              ? originalFilename.slice(dotIndex + 1).toLowerCase()
+              : "";
+          // 修改文件名，这里改了之后，generateImageName里的originalName就会变成下面的值
+          req.file.name = ext ? `${nanoid}.${ext}` : nanoid;
         }
       },
     ],
