@@ -1,20 +1,50 @@
 {
-  // Biome 格式化（全局生效）
+  // 保存时自动格式化
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
-
-  // 保存时自动排序 imports
-  "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit"
-  },
 
   // 使用项目本地的 TypeScript 版本
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
-  // 禁用 ESLint（已使用 Biome）
-  "eslint.enable": false,
-
-  // 禁用 Prettier（已使用 Biome）
-  "prettier.enable": false
+  // Biome 语言覆盖：只在受支持语言启用 Biome 格式化
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": { "source.organizeImports.biome": "explicit" }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": { "source.organizeImports.biome": "explicit" }
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": { "source.organizeImports.biome": "explicit" }
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": { "source.organizeImports.biome": "explicit" }
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  },
+  "[gritql]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  }
 }
