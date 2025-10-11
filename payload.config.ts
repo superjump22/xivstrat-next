@@ -1,6 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { postgresAdapter } from "@payloadcms/db-postgres";
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
@@ -34,10 +34,8 @@ export default buildConfig({
       : process.env.SERVER_URL,
   cors: [process.env.SERVER_URL || ""].filter(Boolean),
   csrf: [process.env.SERVER_URL || ""].filter(Boolean),
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DB_URI || "",
-    },
+  db: mongooseAdapter({
+    url: process.env.DB_URI || "",
   }),
   sharp,
   plugins: [
