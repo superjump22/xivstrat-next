@@ -10,8 +10,10 @@ export const Assets: CollectionConfig = {
     {
       name: "originalFilename",
       type: "text",
-      hidden: true,
       required: true,
+      admin: {
+        hidden: true,
+      },
     },
   ],
   upload: {
