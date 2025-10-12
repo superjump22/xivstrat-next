@@ -63,7 +63,7 @@ export const Users: CollectionConfig = {
     useAsTitle: "username",
     listSearchableFields: ["username", "email"],
     hidden: ({ user }) => {
-      if (user.roles?.includes("admin")) return false;
+      if (user?.roles?.includes("admin")) return false;
       return true;
     },
   },

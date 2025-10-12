@@ -42,7 +42,10 @@ export default buildConfig({
     s3Storage({
       // 腾讯云COS兼容S3 API：https://cloud.tencent.com/document/product/436/37421
       collections: {
-        assets: true,
+        assets: {
+          disableLocalStorage: true,
+          prefix: "assets",
+        },
       },
       bucket: process.env.COS_BUCKET || "",
       config: {
